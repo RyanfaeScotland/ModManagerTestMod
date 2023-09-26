@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <Name value="ModManagerTestMod" />
+    <DisplayName value="ModManagerTestMod" />
+    <Version value="0.0.1" />
+    <Description value='Tests ModManager' />
+    <Author value="RyanFaeScotland" />
+</xml>
