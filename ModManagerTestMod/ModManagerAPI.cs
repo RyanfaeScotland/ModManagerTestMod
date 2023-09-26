@@ -43,12 +43,22 @@ namespace CustomModManager.API
 
             try
             {
-                return new ModSettings(modInstance, CORE_ASSEMBLY.CreateInstance("CustomModManager.ModManagerModSettings", true, 0, null, new object[] { modInstance }, null, null));
+                var assembly = CORE_ASSEMBLY.CreateInstance("CustomModManager.ModManagerModSettings", true, 0, null, new object[] { modInstance }, null, null);
+                
+                if (assembly is null)
+                {
+                    Log.Warning("CORE_ASSEMBLY.CreateInstance() returned null.");
+                } else
+                {
+                    Log.Warning("CORE_ASSEMBLY.CreateInstance() returned NOT null.");
+                }
+                
+                return new ModSettings(modInstance, assembly);
             }
-            catch
+            catch (Exception ex) 
             {
                 Log.Warning($"[{modInstance.Name}] [Mod Manager API] Failed to locate ModSettings instance in Mod Manager. Perhaps an out-of-date API version is being used?");
-
+                Log.Error(ex.ToString());
                 return new ModSettings(modInstance, null);
             }
         }
